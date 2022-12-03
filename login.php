@@ -65,6 +65,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
@@ -111,15 +112,15 @@
                                     </a>
                                 </div>
                             </div>
-
+ 
                             <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                 <div class="header-right-info">
                                     <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                    <li class="nav-item">
 				    <a href="login.php"  class="nav-link"><span class="">Login</span> </a>
 				 </li>
-                                    </ul>
-                                </div>
+			       </ul>
+		              </div>
                             </div>
                         </div>
                     </div>
@@ -160,17 +161,30 @@
 			extract($_POST);
 			if(!empty($username))
 				{
-				$query = "SELECT email,name from users WHERE email = '$username' AND password = '$password'";
+				$query = "SELECT email,name,password from users WHERE email = '$username'";
 				$result=$conn->query ("$query") or die ("Error in query: $query".$conn->error);
 				if (mysqli_num_rows($result) > 0)
 				{		
 					$row = $result->fetch_assoc();
-					$user=$row['name'];	
-				?> 
-				<script language = "javascript" style = "text/javascript"> 
-					window.location = "home.php?user=<?php echo $user?>";	
-				</script>
-				<?php
+					 if (password_verify($password, $row['password']))
+					  {
+					    /* The password is correct. */
+					    $user=$row['name'];
+					    ?> 
+					     <script language = "javascript" style = "text/javascript"> 
+						window.location = "home.php?user=<?php echo $user?>";	
+					     </script>
+					  <?php	
+					  }else{
+					echo"
+						<div class=' row pt-10' style='text-align:center;border:0; bgcolor: white;'>			
+						<div class='alert alert-danger'>
+							<strong>Oops! Password Issues</strong>
+							<a href='javascript:history.go(-1)'><button class='btn btn-danger btn-sm'>Go Back</button></a>
+						</div>
+					       </div>";		
+					
+					}
 				}
 				else{
 				 ?>
