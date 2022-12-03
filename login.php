@@ -83,13 +83,15 @@
                     <strong><font color="#fff">ADM</font></strong>
 		  
                 </div>
-                <div class="left-custom-menu-adp-wrap">
+                <div class="left-custom-menu-adp-wrap"style="text-align:right;">
                     <ul class="nav navbar-nav left-sidebar-menu-pro">
 		    <li align="center"><img src="img/logo/logxx.png" alt="" /></li>
                         <li class="nav-item">
-                            <a href="?p=home_content&user=<?php echo $user?>"  class="nav-link dropdown-toggle"><i class="fa big-icon fa-home"></i> <span class="mini-dn">Home</span> </a>
+                            <a href="index.php"  class="nav-link "><i class=""></i> <span class="btn btn-sm btn-info">Home</span> </a>
                          </li>
-                                      
+			<li class="nav-item">
+                            <a href="register.php"  class="nav-link"><i class=""></i> <span class="btn btn-sm btn-info">Register</span> </a>
+                         </li>	
                     </ul>
 		    
                 </div>
@@ -114,7 +116,7 @@
                                 <div class="header-right-info">
                                     <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                    <li class="nav-item">
-				    <a href="login.php"  class="nav-link dropdown-toggle"><span class="">Login</span> </a>
+				    <a href="login.php"  class="nav-link"><span class="">Login</span> </a>
 				 </li>
                                     </ul>
                                 </div>
