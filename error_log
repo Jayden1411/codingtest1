@@ -1,0 +1,7 @@
+[17-Feb-2020 06:39:50 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'bulk'@'localhost' (using password: YES) in /home/eminentt/public_html/bulksms/admin/connect.php on line 24
+[17-Feb-2020 06:39:50 UTC] PHP Fatal error:  Database connection failed: Access denied for user 'bulk'@'localhost' (using password: YES) in /home/eminentt/public_html/bulksms/admin/connect.php on line 28
+[17-Feb-2020 06:42:37 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; tc_calendar has a deprecated constructor in /home/eminentt/public_html/bulksms/admin/calendar/classes/tc_calendar.php on line 55
+[12-May-2021 19:44:09 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'eminentt_sender'@'localhost' (using password: YES) in /home/fastsmsc/public_html/msgs/admin/connect.php on line 24
+[12-May-2021 19:44:09 UTC] PHP Fatal error:  Database connection failed: Access denied for user 'eminentt_sender'@'localhost' (using password: YES) in /home/fastsmsc/public_html/msgs/admin/connect.php on line 28
+[12-May-2021 19:44:24 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'eminentt_sender'@'localhost' (using password: YES) in /home/fastsmsc/public_html/msgs/admin/connect.php on line 24
+[12-May-2021 19:44:24 UTC] PHP Fatal error:  Database connection failed: Access denied for user 'eminentt_sender'@'localhost' (using password: YES) in /home/fastsmsc/public_html/msgs/admin/connect.php on line 28
