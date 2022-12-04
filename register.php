@@ -155,22 +155,43 @@
                         <div class="col-lg-12 col-md-8 col-sm-8 col-xs-8">
                             <div class="welcome-wrapper shadow-reset res-mg-t mg-b-30">
                                 <div class="adminpro-message-list">
+			<?php	
+			include "common.php";
+			if (!empty($_POST))
+			{ 	extract($_POST);
+				$dbh = Db::db_conn();
+				$validate= Register::userValidate($dbh, $name,$email,$password,$password_confirmation);
 				
-				
+				if(empty($validate)){
+					$register= Register::userRegister($dbh, $name,$email,$password);
+					header('Location: index.php');
+				}else{
+				echo "<script language ='javascript' style = 'text/javascript'>window.location = 'register.php?errors=".json_encode($validate)."'</script>";
+				}
+			}
+			?>
 			    <div class="row justify-content-center">
 				<div class="col-md-8">
 				    <div class="card">
-					<div class="card-header">Register</div>
-
+					<div class="card-header">Register</div>	
+					<div class="alert alert-danger">
+						<?php
+						if (!empty($_REQUEST['errors']))
+						{
+							$data=  json_decode($_REQUEST['errors']); 
+							foreach($data as $error){
+								echo "<br>".$error;
+							}
+						}
+						?>						
+					</div>
 					<div class="card-body">
-					    <form method="POST" action="register_submit.php">
-			      
+					    <form method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>">			      
 						<div class="row mb-3">
 						    <label for="name" class="col-md-4 col-form-label text-md-end">Company Name</label>
 
 						    <div class="col-md-6">
 							<input id="name" type="text" class="form-control" name="name"  required autocomplete="name" autofocus>
-					   
 						    </div>
 						</div>
 
