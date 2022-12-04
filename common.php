@@ -359,6 +359,10 @@ class Register
 				array_push($errors,'User email '.$result['email'].' already exist');
 				$flag=false;
 			}
+		 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				array_push($errors,'$email is not a valid email address');
+				$flag=false;
+			}
 			if($password !=$password_confirmation){
 				array_push($errors,'Passwords not the same');
 				$flag=false;
