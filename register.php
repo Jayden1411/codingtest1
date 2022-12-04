@@ -344,10 +344,11 @@
 						<?php
 						if (!empty($_REQUEST['errors']))
 						{
-							$data=  json_decode($_REQUEST['errors']); 
-							foreach($data as $error){
-								echo "<br>".$error;
-							}
+							$data=  json_decode($_REQUEST['errors']);
+							var_dump($data);
+							//foreach($data as $error){
+							//	echo "<br>".$error;
+							//}
 						}
 						?>						
 					</div>
