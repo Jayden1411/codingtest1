@@ -1,5 +1,5 @@
 <?php
-	$company=trim($_REQUEST['company']);
+	$company=trim($_REQUEST['user']);
 	$dbh = Db::db_connect();
 	$data= exportData::makePdf($dbh, $company);
 ?>
