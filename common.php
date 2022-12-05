@@ -210,7 +210,7 @@ class Register
 				$flag=false;
 			}
 			if($flag==true){
-				return $flag;	
+				return "passed";;	
 			}else{
 				return $errors;
 			}
