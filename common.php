@@ -403,16 +403,20 @@ class Login
 {
 	public static function checkLogin($dbh, $username, $password)
 	{
-		$password = md5($password);
 		try
 		{
-			$query = "SELECT * FROM user WHERE (EMAIL=:EMAIL OR PHONE=:EMAIL) AND PASSWORD=:PASSWORD AND STATUS = 1";
+			$query = "SELECT * from users WHERE email =:EMAIL";
 			$sth = $dbh->prepare($query);
 			$sth->bindParam(':EMAIL', $username, PDO::PARAM_STR);
-			$sth->bindParam(':PASSWORD', $password, PDO::PARAM_STR);
 			$sth->execute();
-			$row = $sth->fetch(PDO::FETCH_ASSOC);
-			return $row;
+			$row = $sth->fetch();
+			//return $row;
+			if (password_verify($password, $row['password']))
+			{
+				return $row['name'];
+			}else{	
+				return false;
+			}
 		}
 		catch(PDOException $e)
 		{
@@ -420,24 +424,6 @@ class Login
 		}
 	}
 	
-	public static function checkLogin1($dbh, $username, $password)
-	{
-		$password = md5($password);
-		try
-		{
-			$query = "SELECT * FROM user WHERE (EMAIL=:EMAIL OR PHONE=:EMAIL) AND PASSWORD=:PASSWORD";
-			$sth = $dbh->prepare($query);
-			$sth->bindParam(':EMAIL', $username, PDO::PARAM_STR);
-			$sth->bindParam(':PASSWORD', $password, PDO::PARAM_STR);
-			$sth->execute();
-			$row = $sth->fetch(PDO::FETCH_ASSOC);
-			return $row;
-		}
-		catch(PDOException $e)
-		{
-			echo $message = $e->getMessage();
-		}
-	}
 	
 	public static function updatePassword($dbh, $username, $password)
 	{
