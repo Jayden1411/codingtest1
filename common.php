@@ -57,7 +57,7 @@ class ApiData
 			return $client->$method($session_id, $php_filter);
 			//return $client->getAdverts($session_id, $php_filter);
 		}
-		catch(PDOException $e)
+		catch(Exception $e)
 		{
 			echo $message = $e->getMessage();
 			return 'F';
