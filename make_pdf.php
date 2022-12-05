@@ -1,4 +1,5 @@
 <?php
+	include "common.php";
 	$company=trim($_REQUEST['user']);
 	$dbh = Db::db_connect();
 	$data= exportData::makePdf($dbh, $company);
