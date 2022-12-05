@@ -1,9 +1,8 @@
 <?php 
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
-include"connect.php";
 include "common.php";
 
-$user=trim($_REQUEST['user']);
+$user=$_REQUEST['user'];
 $today =date('Y'.'-'.'m'.'-'.'d');
 $time =date('Y'.'-'.'m'.'-'.'d'.' '.'h'.':'.'m'.':'.'s');
 $currentTimeinSeconds = time();
