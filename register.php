@@ -161,7 +161,7 @@
 			{ 	extract($_POST);
 				$dbh = Db::db_connect();
 				$validate= Register::userValidate($dbh, $name,$email,$password,$password_confirmation);
-				if($validate==true){
+				if($validate=="passed"){
 					$register= Register::userRegister($dbh, $name,$email,$password);
 					//var_dump($register);
 					?>
