@@ -157,51 +157,33 @@
                                 <div class="adminpro-message-list">
                 
 			<?php
-			include "connect.php";
-			extract($_POST);
-			if(!empty($username))
-				{
-				$query = "SELECT email,name,password from users WHERE email = '$username'";
-				$result=$conn->query ("$query") or die ("Error in query: $query".$conn->error);
-				if (mysqli_num_rows($result) > 0)
-				{		
-					$row = $result->fetch_assoc();
-					 if (password_verify($password, $row['password']))
-					  {
-					    /* The password is correct. */
-					    $user=$row['name'];
-					    ?> 
-					     <script language = "javascript" style = "text/javascript"> 
-						window.location = "home.php?user=<?php echo $user?>";	
-					     </script>
-					  <?php	
-					  }else{
-					echo"
-						<div class=' row pt-10' style='text-align:center;border:0; bgcolor: white;'>			
-						<div class='alert alert-danger'>
-							<strong>Oops! Password Issues</strong>
-							<a href='javascript:history.go(-1)'><button class='btn btn-danger btn-sm'>Go Back</button></a>
-						</div>
-					       </div>";		
-					
-					}
+			include "common.php";
+			if (!empty($_POST)){ 	
+				extract($_POST);
+				$dbh = Db::db_connect();
+				$login= Login::checkLogin($dbh, $username, $password);
+				//var_dump($login);
+				if(!empty($login)){
+					echo "<script language ='javascript' style = 'text/javascript'>window.location ='home.php?user=".$login."'</script>";
+				}else{
+					echo "<script language ='javascript' style = 'text/javascript'>window.location ='login.php?validations=Invalid Login Attempt'</script>";
 				}
-				else{
-				 ?>
-					<script language = "javascript" style = "text/javascript"> 
-						alert('Invalid login attempt.......');
-						window.location = "login.php";									
-					</script>
-				<?php
-				}
-				
-				}
-				?>  
-					  
+			}
+			?> 							  
 				  
 			<!-- login Start-->
+			
+			<div class="alert alert-danger">
+			<?php
+				if (!empty($_REQUEST['validations']))
+				{
+					echo $_REQUEST['validations'];
+				}
+				?>						
+			</div>
+			
 			<div class="card-body">
-			    <form method="POST" action="?p=adverts">
+			    <form method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>">
 				     <div class="row mb-3">
 				    <label for="email" class="col-md-4 col-form-label text-md-end">Email Address</label>
 					    <div class="col-md-6">
