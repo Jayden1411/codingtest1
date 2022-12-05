@@ -13,7 +13,7 @@
 		  <tr>
 		      <th scope="col"></th>					
 			<th scope="col"colspan="4"style="text-align:right;">  
-			<a href="?p=make_pdf" target="_blank"  class="btn btn-sm btn-primary me-1">Advert Clicks</a>		
+			<a href="?p=make_pdf&user=<?php echo $_REQUEST['user'];?>" target="_blank"  class="btn btn-sm btn-primary me-1">Advert Clicks</a>		
 			<div class="btn-group pull-right">
 				  <button type="button" class="btn btn-info">Action</button>
 				  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
@@ -27,6 +27,7 @@
 			</div>
 			<form action="export_data.php" method="post" id="export-form">
 				<input type="hidden" value='' id='hidden-type' name='ExportType'/>
+				<input type="hidden" value='<?php echo $_REQUEST['user'];?>' id='user' name='user'/>
 			</form>
 			
 			</th>
